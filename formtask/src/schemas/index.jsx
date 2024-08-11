@@ -10,3 +10,15 @@ export const basicSchema=yup.object().shape({
     }).required('Entering your password is mandatory'),
     comfirmPassword:yup.string().oneOf([yup.ref('password')], 'Password does not match').required('Entering your password is mandatory')
 })
+export const adviceSchema=yup.object().shape({
+    username:yup
+    .string()
+    .min(3, 'Enter min 5 characters')
+    .required('Entering your username is mandatory'),
+    university:yup
+    .string()
+    .oneOf(['Oslomet', 'University of Oslo','University of Tromso', 'University of Cukurova'],'Select your university')
+    .required('Select your university is mandatory'),
+    isAccepted:yup
+    .boolean().oneOf([true],'Accept terms of use')
+})

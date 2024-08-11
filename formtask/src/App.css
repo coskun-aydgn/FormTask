@@ -9,7 +9,7 @@ form {
   width: 500px;
 }
 
-input {
+input, select {
   width: 100%;
   padding: 8px 7px;
   font-size: 16px;
@@ -50,4 +50,13 @@ button {
   font-size: 12px;
   text-align: left;
   margin-top: 0;
+}
+.checkbox{
+display: flex;
+justify-content: flex-start;
+align-items: center;
+}
+.checkbox input{
+  width: auto;
+  margin-right: 10px;
 }
