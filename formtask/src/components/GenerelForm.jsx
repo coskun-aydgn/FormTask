@@ -1,27 +1,40 @@
 import React from 'react'
 import { useFormik } from 'formik'
+import { basicSchema } from '../schemas'
+
+const onSubmit= async(values, actions)=>{
+    console.log(values)
+    console.log(actions)
+    await new Promise((resolve)=>{
+        setTimeout(resolve,1000)
+    });
+    actions.resetForm();
+
+}
 
 function GenerelForm() {
-    const /* formik */ { values, errors, handleChange, handleSubmit } = useFormik({
+    const /* formik */ { values, errors, isSubmitting,handleChange, handleSubmit } = useFormik({
         initialValues: {
             email: '',
             age: '',
             password: '',
             comfirmPassword: ''
         },
-        onSubmit: values => {
-            alert(JSON.stringify(values, null, 2));
-        }
+        validationSchema:basicSchema,
+        onSubmit,
     })
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
             <div className='inputDiv'>
                 <label > Email</label>
                 <input type="email"
                     value={values.email}
                     onChange={handleChange}
                     id='email'
-                    placeholder='Please enter your email...' />
+                    placeholder='Please enter your email...' 
+                    className={errors.email ? 'inputError' : ''}
+                    />
+                    {errors.email && <p className='error'>{errors.email}</p>} 
             </div>
             <div className='inputDiv'>
                 <label > Age</label>
@@ -29,7 +42,9 @@ function GenerelForm() {
                     value={values.age}
                     onChange={handleChange}
                     id='age'
-                    placeholder='Please enter your age...' />
+                    placeholder='Please enter your age...' 
+                    className={errors.age ? 'inputError' : ''}/>
+                     {errors.age && <p className='error'>{errors.age}</p>} 
             </div>
             <div className='inputDiv'>
                 <label > Password</label>
@@ -37,7 +52,9 @@ function GenerelForm() {
                     value={values.password}
                     onChange={handleChange}
                     id='password'
-                    placeholder='Please enter your password...' />
+                    placeholder='Please enter your password...' 
+                    className={errors.password ? 'inputError' : ''}/>
+                     {errors.password && <p className='error'>{errors.password}</p>} 
             </div>
             <div className='inputDiv'>
                 <label > Again Password</label>
@@ -45,9 +62,11 @@ function GenerelForm() {
                     value={values.comfirmPassword}
                     onChange={handleChange}
                     id='comfirmPassword'
-                    placeholder='Please enter your password again...' />
+                    placeholder='Please enter your password again...'
+                    className={errors.comfirmPassword ? 'inputError' : ''}/>
+                     {errors.comfirmPassword && <p className='error'>{errors.comfirmPassword}</p>} 
             </div>
-            <button type='submit'>
+            <button  disabled={isSubmitting} type='submit'>
                 Save
             </button>
         </form>

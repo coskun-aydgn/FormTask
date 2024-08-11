@@ -29,10 +29,25 @@ input::placeholder {
 input:focus {
   border-color: lightblue;
 }
+.inputError{
+ border-color: #fc8181;
+}
 
 button {
   width: 100%;
   padding: 8px 8px;
   margin: 16px 0px;
-
+  background-color: green;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 20px;
+  border: none;
+}
+.error{
+  color: #fc8181;
+  font-size: 12px;
+  text-align: left;
+  margin-top: 0;
 }
